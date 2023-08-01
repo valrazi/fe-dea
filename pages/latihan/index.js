@@ -8,8 +8,16 @@ import { Image } from 'primereact/image';
 import Link from 'next/link';
 import { Menu } from 'primereact/menu';
 
+import Cookies from 'js-cookie';
+
+import Router from 'next/router';
 
 const latihan = () => {
+    React.useEffect(() => {
+        if(!Cookies.get('admin_token')) {
+            Router.push('/latihan2')
+        }
+    })
     const [password, setPassword] = useState('');
     const contextPath = getConfig().publicRuntimeConfig.contextPath;
     const menu2 = useRef(null);
