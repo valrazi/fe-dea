@@ -35,6 +35,8 @@ function daftargroupuser() {
                 <th className="border-b border-gray-200 px-4 py-2 bg-blue-600 text-white">Kode</th>
                 <th className="border-b border-gray-200 px-4 py-2 bg-blue-600 text-white">User Group</th>
                 <th className="border-b border-gray-200 px-4 py-2 bg-blue-600 text-white">Menu</th>
+                <th className="border-b border-gray-200 px-4 py-2 bg-blue-600 text-white">Edit</th>
+                <th className="border-b border-gray-200 px-4 py-2 bg-blue-600 text-white">Delete</th>
               </tr>
             </thead>
             <tbody>
