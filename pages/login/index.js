@@ -10,6 +10,11 @@ import { InputText } from 'primereact/inputtext';
 import { classNames } from 'primereact/utils';
 import { Dropdown } from 'primereact/dropdown';
 
+//import axios
+import axios from "axios";
+
+//import js cookie
+import Cookies from 'js-cookie';
 
 const Login = () => {
     const [password, setPassword] = useState('');
@@ -25,7 +30,9 @@ const Login = () => {
         { name: '2024', thang: '2024' }
     ];
     
-
+    const [emailLogin, setEmailLogin] = useState('');
+    const [passwordLogin, setPassLogin] = useState('');
+    const [loginStatus, setLoginStatus] = useState('');
     return (
         <div className={containerClassName}>
             <div className="flex flex-column align-items-center justify-content-center">
@@ -41,12 +48,13 @@ const Login = () => {
                                 <label htmlFor="iduser" className="block text-900 text-l font-medium mb-2">
                                     Userid
                                 </label>
-                                <InputText id="iduser" type="text" value={iduser} onChange={(e) => setIduser(e.target.value)} placeholder="iduser" className="w-full md:w-30rem mb-5" style={{ padding: '1rem' }} />
+                                <InputText id="email1" type="text" value={emailLogin} onInput={(e) => setEmailLogin(e.target.value)}  placeholder="****" toggleMask className="w-full mb-5" inputClassName="w-full p-3 md:w-30rem"></InputText>
 
                                 <label htmlFor="password" className="block text-900 font-medium text-l mb-2">
                                     Password
                                 </label>
-                                <Password inputid="password" value={password} onChange={(e) => setPassword(e.target.value)} placeholder="****" toggleMask className="w-full mb-5" inputClassName="w-full p-3 md:w-30rem"></Password>
+                                
+                                <Password id="password1" type="text" value={passwordLogin} onInput={(e) => setPassLogin(e.target.value)} placeholder="****" toggleMask className="w-full mb-5" inputClassName="w-full p-3 md:w-30rem"></Password>
                                 <label htmlFor="thang" className="block text-900 text-l font-medium mb-2">
                                     Tahun Anggaran
                                 </label>
@@ -61,7 +69,20 @@ const Login = () => {
                                         Forgot password?
                                     </a>
                                 </div>
-                                <Button label="Log In" className="w-full p-3 text-l" ></Button>
+                                <Button label="Login" onClick={() => {
+                        axios.post(`${process.env.NEXT_PUBLIC_BACKENDURL}/admin/login`, {
+                            email: emailLogin,
+                            password: passwordLogin,
+                        }).then((res) => {
+                            Cookies.set('admin_token', res.data.data.accessToken)
+                            alert('Login Berhasil')
+                            router.push('/dashboard')
+                        }).catch((error) => {
+                            
+                            alert('Login Gagal')
+                            console.log(error);
+                        })
+                    }}></Button>
                             </div>
                     </div>
                 </div>

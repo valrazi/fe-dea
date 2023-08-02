@@ -123,7 +123,7 @@ function daftarmenu() {
         </div>
 
         <div className="grid justify-center">
-          <h5>Rekam Menu</h5>
+          <h5>Form Daftar Menu</h5>
           <div className="col-12">
             <div className="card">
               <div className="flex justify-between mb-4">
@@ -189,7 +189,7 @@ function daftarmenu() {
 
                         <div>
                           <div className="col-2 md:col-2">
-                            <Button label="Rekam" onClick={() => {
+                            <Button label="Tambah" onClick={() => {
                               axios.post(`${process.env.NEXT_PUBLIC_BACKENDURL}/admin/menu`, {
                                 nama: namaMenu,
                                 link: linkMenu,

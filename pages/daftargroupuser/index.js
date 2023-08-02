@@ -72,66 +72,9 @@ function daftargroupuser() {
            </table>
         </div>
         </div>
-        
+
         <div className="grid justify-center">
-            <h5>Rekam Group User</h5>
-        <div className="col-12">
-        <div className="card">
-        <div className="flex justify-between mb-4">
-        <div>
-            <Button icon={PrimeIcons.PLUS} className="p-button-success" style={{ marginRight: '5px' }}/>
-            <Button icon="pi pi-search" onClick={handleSearch}/>
-                <InputText type="search" onChange={(e) => setGlobalFilter(e.target.value)} placeholder="Search..." />
-          </div>
-          </div>
-          <div>
-            <table className="min-w-full bg-white rounded-md">
-            <thead>
-              <tr>
-                <th className="border-b border-gray-200 px-4 py-2 bg-blue-600 text-white">Kode</th>
-                <th className="border-b border-gray-200 px-4 py-2 bg-blue-600 text-white">User Group</th>
-                <th className="border-b border-gray-200 px-4 py-2 bg-blue-600 text-white">Menu</th>
-              </tr>
-            </thead>
-           </table>
-
-           <div className="p-fluid formgrid grid">
-           <div className="field col-12">
-           <div className="field grid">
-            <label htmlFor="name3" className="col-12 mb-2 md:col-2 md:mb-0">
-                 Kode
-            </label>
-        <div className="col-12 md:col-10">
-            <InputText id="name3" type="text" />
-                        </div>
-                    </div>
-
-        <div className="field grid">
-            <label htmlFor="name3" className="col-12 mb-2 md:col-2 md:mb-0">
-                 Group
-            </label>
-        <div className="col-12 md:col-10">
-            <InputText id="name3" type="text" />
-        </div>
-        </div>
-            <div className="field grid">
-                <label htmlFor="name3" className="col-12 mb-2 md:col-2 md:mb-0">
-                 Menu
-                </label>
-            <div className="col-12 md:col-10">
-                <InputTextarea id="menu" rows="4" />
-            </div>
-            
-        </div></div></div>
-
-              <div>
-                <Button label="Rekam"></Button>
-                      </div>
-                    </div>     
-                  </div>
-                  
-                  <div className="grid justify-center">
-                    <h5>Ubah Hapus User</h5>
+                    <h5>Form Daftar Group User</h5>
                 <div className="col-12">
                 <div className="card">
                 <div className="card p-fluid">
@@ -145,7 +88,7 @@ function daftargroupuser() {
                     </div>
                     <div className="field grid">
                         <label htmlFor="email3" className="col-12 mb-2 md:col-2 md:mb-0">
-                            Group
+                             User Group
                         </label>
                         <div className="col-12 md:col-10">
                             <InputText id="email3" type="text" />
@@ -161,24 +104,14 @@ function daftargroupuser() {
                     </div>
                     </div>
                     <div className="col-4 md:col-4">
+                    <Button label="Tambah" style={{ marginRight: '10px' }}></Button>
                         <Button label="Ubah" severity="warning" style={{ marginRight: '10px' }}></Button>
                         <Button label="Hapus" severity="danger"></Button>
                     </div>
-            
-          </div></div></div></div>
-            
-            </div>
-            <div className="grid">
-            <div className="col-12 md:col-6">
-                <div className="card p-fluid">
-                <h5>Daftar Menu</h5>
-                    <p>010000 - Administrator</p>
-                    <p>010100 - Control Panel</p>
-                    <p>010101 - Manajemen User</p>
-                    <p>010102 - User Group</p>
-                    <p>010103 - Menu Sidebar</p>
-                </div></div></div>
-            </div>
+                            </div>
+                      </div>
+                </div>
+          </div>
     </div>
   );
 }

@@ -16,11 +16,10 @@ const AppMenu = () => {
         {
             label: 'Latihan',
             items: [
-                { label: 'Dashboard', icon: 'pi pi-fw pi-home', to: '/latihan', badge: 'NEW' },
-                { label: 'Registrasi', icon: 'pi pi-fw pi-eye', to: '/latihan2', badge: 'NEW' },
-                { label: 'Login', icon: 'pi pi-fw pi-sign-in', to: '/latihan3', badge: 'NEW' },
-                { label: 'Rekam User', icon: 'pi pi-fw pi-id-card', to: '/rekamuser', badge: 'NEW' },
-                { label: 'Ubah Hapus User', icon: 'pi pi-fw pi-eye', to: '/ubahhapususer', badge: 'NEW' },
+                { label: 'Dashboard', icon: 'pi pi-fw pi-home', to: '/dashboard', badge: 'NEW' },
+                { label: 'Registrasi', icon: 'pi pi-fw pi-eye', to: '/registrasi', badge: 'NEW' },
+                { label: 'Login', icon: 'pi pi-fw pi-sign-in', to: '/login', badge: 'NEW' },
+                { label: 'User', icon: 'pi pi-fw pi-id-card', to: '/user', badge: 'NEW' },
                 { label: 'Daftar User', icon: 'pi pi-fw pi-list', to: '/daftaruser', badge: 'NEW' },
                 { label: 'Daftar Group User', icon: 'pi pi-fw pi-clone', to: '/daftargroupuser', badge: 'NEW' },
                 { label: 'Daftar Menu', icon: 'pi pi-fw pi-tablet', to: '/daftarmenu', badge: 'NEW' },

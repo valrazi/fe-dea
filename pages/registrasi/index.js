@@ -11,7 +11,7 @@ import Cookies from 'js-cookie';
 
 import Router from 'next/router';
 
-const latihan2 = () => {
+const registrasi = () => {
     const [thn_anggaran, setThnAnggaran] = useState(0);
     const [emailReg, setEmailReg] = useState('');
     const [passwordReg, setPasswordReg] = useState('');
@@ -45,8 +45,7 @@ const latihan2 = () => {
                         <label htmlFor='thn_anggaran'>Tahun Anggaran</label>
                         <Dropdown id="thn_anggaran" value={thn_anggaran} onChange={(e) => setThnAnggaran(e.value)} options={dropdownItems} optionLabel="name" placeholder="Select One"></Dropdown>
                     </div>
-                </div>
-                <Button label="Register"
+                    <Button label="Register"
                     onClick={() => {
                         axios.post(`${process.env.NEXT_PUBLIC_BACKENDURL}/admin/register`, {
                             email: emailReg,
@@ -62,6 +61,8 @@ const latihan2 = () => {
                             console.log(error);
                         })
                     }}></Button>
+                </div>
+                
             </div>
 
             <div className="col-12 md:col-6">
@@ -77,8 +78,7 @@ const latihan2 = () => {
                         <label htmlFor="password1">Password</label>
                         <InputText id="password1" type="text" value={passwordLogin} onInput={(e) => setPassLogin(e.target.value)} />
                     </div>
-                    <div className="field">
-                    </div>
+                    
 
                     <Button label="Login" onClick={() => {
                         axios.post(`${process.env.NEXT_PUBLIC_BACKENDURL}/admin/login`, {
@@ -87,26 +87,20 @@ const latihan2 = () => {
                         }).then((res) => {
                             Cookies.set('admin_token', res.data.data.accessToken)
                             setLoginStatus('Login Berhasil')
-                            Router.push('/latihan')
+                            Router.push('/dashboard')
                         }).catch((error) => {
                             setLoginStatus('Login Gagal')
                             console.log(error);
                         })
                     }}></Button>
+                </div>
 
-                    <div className='field'>
-                        <Button label="logout" severity='danger' onClick={() => {
+                        <Button label="Logout" icon="pi pi-user" severity='danger' onClick={() => {
                             Cookies.remove('admin_token')
                             alert('Logout success!')
                         }}></Button>
-                    </div>
-                </div>
-
-
             </div>
-
-
         </div>
     );
 };
-export default latihan2;
+export default registrasi;

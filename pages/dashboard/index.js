@@ -12,7 +12,7 @@ import Cookies from 'js-cookie';
 
 import Router from 'next/router';
 
-const latihan = () => {
+const dashboard = () => {
     React.useEffect(() => {
         if(!Cookies.get('admin_token')) {
             Router.push('/latihan2')
@@ -198,4 +198,4 @@ const latihan = () => {
     );
 };
 
-export default latihan;
+export default dashboard;
