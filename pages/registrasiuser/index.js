@@ -16,7 +16,7 @@ import axios from "axios";
 //import js cookie
 import Cookies from 'js-cookie';
 
-const Login = () => {
+const registrasiuser = () => {
     const [password, setPassword] = useState('');
     const [iduser, setIduser] = useState('');
     const [thang, setThang] = useState('');
@@ -39,37 +39,51 @@ const Login = () => {
                 <div style={{ borderRadius: '56px', padding: '0.4rem', background: 'linear-gradient(180deg, var(--primary-color) 100%, rgba(33, 150, 243, 0) 30%)' }}>
                     <div className="w-full surface-card py-5 px-2 sm:px-5" style={{ borderRadius: '53px' }}>
                     <div className="text-center mb-5">
+                        
                             <img src={`${contextPath}/demo/images/login/Logo Kemenkeu.png`} alt="Image" height="50" className="mb-3" />
                             <div className="text-900 text-3l font-medium mb-2">DSW</div>
                             <span className="text-600 font-medium">Kementerian Keuangan RI</span>
                         </div>
 
                         <div>
-                                <label htmlFor="email" className="block text-900 text-l font-medium mb-2">
-                                    Email
+                                <label htmlFor="iduser" className="block text-900 text-l font-medium mb-2">
+                                    Userid
                                 </label>
-                                <InputText id="email1" type="text" value={emailLogin} onInput={(e) => setEmailLogin(e.target.value)}  placeholder="****" toggleMask className="w-full mb-5" inputClassName="w-full p-3 md:w-30rem"></InputText>
+                                <InputText id="email" type="text" value={emailLogin} onInput={(e) => setEmailLogin(e.target.value)}  placeholder="****" toggleMask className="w-full mb-5" inputClassName="w-full p-3 md:w-30rem"></InputText>
+
+                                <label htmlFor="nama" className="block text-900 text-l font-medium mb-2">
+                                    Nama 
+                                </label>
+                                <InputText id="email" type="text" value={emailLogin} onInput={(e) => setEmailLogin(e.target.value)}  placeholder="****" toggleMask className="w-full mb-5" inputClassName="w-full p-3 md:w-30rem"></InputText>
+
+                                <label htmlFor="nip" className="block text-900 text-l font-medium mb-2">
+                                    NIP [Organisasi] 
+                                </label>
+                                <InputText id="email" type="text" value={emailLogin} onInput={(e) => setEmailLogin(e.target.value)}  placeholder="****" toggleMask className="w-full mb-5" inputClassName="w-full p-3 md:w-30rem"></InputText>
+
+                                <label htmlFor="usergroup" className="block text-900 text-l font-medium mb-2">
+                                    User Group 
+                                </label>
+                                <InputText id="email" type="text" value={emailLogin} onInput={(e) => setEmailLogin(e.target.value)}  placeholder="****" toggleMask className="w-full mb-5" inputClassName="w-full p-3 md:w-30rem"></InputText>
+
+                                <label htmlFor="email" className="block text-900 text-l font-medium mb-2">
+                                    Email 
+                                </label>
+                                <InputText id="email" type="text" value={emailLogin} onInput={(e) => setEmailLogin(e.target.value)}  placeholder="****" toggleMask className="w-full mb-5" inputClassName="w-full p-3 md:w-30rem"></InputText>
 
                                 <label htmlFor="password" className="block text-900 font-medium text-l mb-2">
                                     Password
                                 </label>
-                                
                                 <Password id="password1" type="text" value={passwordLogin} onInput={(e) => setPassLogin(e.target.value)} placeholder="****" toggleMask className="w-full mb-5" inputClassName="w-full p-3 md:w-30rem"></Password>
-                                <label htmlFor="thang" className="block text-900 text-l font-medium mb-2">
-                                    Tahun Anggaran
-                                </label>
-                                <Dropdown inputid="thang" value={thang} onChange={(e) => setThang(e.target.value)} options={thangValues} placeholder="Tahun Anggaran" className="w-full md:w-30rem mb-5" optionLabel="name" />
+                                
 
                                 <div className="flex align-items-center justify-content-between mb-5 gap-5">
                                     <div className="flex align-items-center">
-                                        <Checkbox inputid="rememberme1" checked={checked} onChange={(e) => setChecked(e.checked)} className="mr-2"></Checkbox>
-                                        <label htmlFor="rememberme1">Remember me</label>
+                                        
                                     </div>
-                                    <a className="font-medium no-underline ml-2 text-right cursor-pointer" style={{ color: 'var(--primary-color)' }}>
-                                        Forgot password?
-                                    </a>
                                 </div>
-                                <Button label="Login" onClick={() => {
+
+                                <Button label="Registrasi" onClick={() => {
                         axios.post(`${process.env.NEXT_PUBLIC_BACKENDURL}/admin/login`, {
                             email: emailLogin,
                             password: passwordLogin,
@@ -92,4 +106,4 @@ const Login = () => {
 };
 
 
-export default Login;
+export default registrasiuser;

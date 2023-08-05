@@ -16,7 +16,7 @@ import axios from "axios";
 //import js cookie
 import Cookies from 'js-cookie';
 
-const Login = () => {
+const loginuser = () => {
     const [password, setPassword] = useState('');
     const [iduser, setIduser] = useState('');
     const [thang, setThang] = useState('');
@@ -55,19 +55,12 @@ const Login = () => {
                                 </label>
                                 
                                 <Password id="password1" type="text" value={passwordLogin} onInput={(e) => setPassLogin(e.target.value)} placeholder="****" toggleMask className="w-full mb-5" inputClassName="w-full p-3 md:w-30rem"></Password>
-                                <label htmlFor="thang" className="block text-900 text-l font-medium mb-2">
-                                    Tahun Anggaran
-                                </label>
-                                <Dropdown inputid="thang" value={thang} onChange={(e) => setThang(e.target.value)} options={thangValues} placeholder="Tahun Anggaran" className="w-full md:w-30rem mb-5" optionLabel="name" />
 
                                 <div className="flex align-items-center justify-content-between mb-5 gap-5">
                                     <div className="flex align-items-center">
-                                        <Checkbox inputid="rememberme1" checked={checked} onChange={(e) => setChecked(e.checked)} className="mr-2"></Checkbox>
-                                        <label htmlFor="rememberme1">Remember me</label>
+                                        
                                     </div>
-                                    <a className="font-medium no-underline ml-2 text-right cursor-pointer" style={{ color: 'var(--primary-color)' }}>
-                                        Forgot password?
-                                    </a>
+                                    
                                 </div>
                                 <Button label="Login" onClick={() => {
                         axios.post(`${process.env.NEXT_PUBLIC_BACKENDURL}/admin/login`, {
@@ -92,4 +85,4 @@ const Login = () => {
 };
 
 
-export default Login;
+export default loginuser;
