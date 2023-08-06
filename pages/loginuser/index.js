@@ -16,11 +16,9 @@ import axios from "axios";
 //import js cookie
 import Cookies from 'js-cookie';
 
+import Router from 'next/router';
+
 const loginuser = () => {
-    const [password, setPassword] = useState('');
-    const [iduser, setIduser] = useState('');
-    const [thang, setThang] = useState('');
-    const [checked, setChecked] = useState(false);
     const { layoutConfig } = useContext(LayoutContext);
     const contextPath = getConfig().publicRuntimeConfig.contextPath;
     const router = useRouter();
@@ -62,14 +60,26 @@ const loginuser = () => {
                                     </div>
                                     
                                 </div>
-                                <Button label="Login" onClick={() => {
-                        axios.post(`${process.env.NEXT_PUBLIC_BACKENDURL}/admin/login`, {
+                                <Button label="Login" onClick={ () => {
+                        axios.post(`${process.env.NEXT_PUBLIC_BACKENDURL}/user/login`, {
                             email: emailLogin,
                             password: passwordLogin,
-                        }).then((res) => {
-                            Cookies.set('admin_token', res.data.data.accessToken)
+                        }).then( async (res) => {
+                            Cookies.set('user_token', res.data.data.accessToken)
+                            const userId = res.data.data.userId
+                            const {data} = await axios.get(`${process.env.NEXT_PUBLIC_BACKENDURL}/user/${userId}`, {
+                                headers: {
+                                    Authorization: Cookies.get('user_token')
+                                }
+                            })
+                            Cookies.set('userNIP', data.data.NIP)
+                            Cookies.set('userEmail', data.data.email)
+                            Cookies.set('userName', data.data.nama)
+                            Cookies.set('userUG', data.data.user_group)
+                            Cookies.set('userId', userId)
+                            
                             alert('Login Berhasil')
-                            router.push('/dashboard')
+                            router.push('/user')
                         }).catch((error) => {
                             
                             alert('Login Gagal')

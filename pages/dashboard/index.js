@@ -15,7 +15,9 @@ import Router from 'next/router';
 const dashboard = () => {
     React.useEffect(() => {
         if(!Cookies.get('admin_token')) {
-            Router.push('/login')
+            if(!Cookies.get('user_token')) {
+                Router.push('/login')
+            } 
         }
     })
     const [password, setPassword] = useState('');

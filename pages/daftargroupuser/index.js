@@ -24,10 +24,11 @@ function daftargroupuser() {
 
   const [arrUserGroup, setArrUserGroup] = useState([]);
   const [arrMenu, setArrMenu] = useState([])
-
+  const [adminBtn, setAdminBtn] = useState(true)
   React.useEffect(() => {
     if (!Cookies.get('admin_token')) {
       Router.push('/login')
+
     }
     async function listUserGroup() {
       const listUserGroup = await axios.get(`${process.env.NEXT_PUBLIC_BACKENDURL}/admin/user-group`, {
@@ -199,7 +200,7 @@ function daftargroupuser() {
           </div>
         </div>
 
-        <div className="grid justify-center">
+        <div className="grid justify-center" visible={adminBtn}>
           <h5>Form Daftar Group User</h5>
           <div className="col-12">
             <div className="card">
@@ -225,7 +226,6 @@ function daftargroupuser() {
               </div>
               <div className="col-4 md:col-4">
                 <Button label="Tambah" style={{ marginRight: '10px' }} onClick={() => {
-                  alert(nama + menuId.code)
                   axios.post(`${process.env.NEXT_PUBLIC_BACKENDURL}/admin/user-group`, {
                     "nama":nama,
                     "menuId":menuId.code
