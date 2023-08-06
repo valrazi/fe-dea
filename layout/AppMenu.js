@@ -5,6 +5,7 @@ import { LayoutContext } from './context/layoutcontext';
 import { MenuProvider } from './context/menucontext';
 import Link from 'next/link';
 
+
 const AppMenu = () => {
     const { layoutConfig } = useContext(LayoutContext);
     const contextPath = getConfig().publicRuntimeConfig.contextPath;
@@ -14,21 +15,31 @@ const AppMenu = () => {
             items: [{ label: 'Dashboard', icon: 'pi pi-fw pi-home', to: '/' }]
         },
         {
-            label: 'Latihan',
+            label: 'User',
             items: [
                 { label: 'Dashboard', icon: 'pi pi-fw pi-home', to: '/dashboard', badge: 'NEW' },
                 { label: 'Registrasi', icon: 'pi pi-fw pi-eye', to: '/registrasi', badge: 'NEW' },
-                { label: 'Login', icon: 'pi pi-fw pi-sign-in', to: '/login', badge: 'NEW' },
                 { label: 'User', icon: 'pi pi-fw pi-id-card', to: '/user', badge: 'NEW' },
-                { label: 'Daftar User', icon: 'pi pi-fw pi-list', to: '/daftaruser', badge: 'NEW' },
-                { label: 'Daftar Group User', icon: 'pi pi-fw pi-clone', to: '/daftargroupuser', badge: 'NEW' },
-                { label: 'Daftar Menu', icon: 'pi pi-fw pi-tablet', to: '/daftarmenu', badge: 'NEW' },
-                { label: 'Data SO', icon: 'pi pi-fw pi-mobile', to: '/dataso', badge: 'NEW' },
-                { label: 'Registrasi (User)', icon: 'pi pi-fw pi-sign-in', to: '/registrasiuser', badge: 'NEW' },
-                { label: 'Login (User)', icon: 'pi pi-fw pi-sign-in', to: '/loginuser', badge: 'NEW' }
+                { label: 'Registrasi', icon: 'pi pi-fw pi-sign-in', to: '/registrasiuser', badge: 'NEW' },
+                { label: 'Login', icon: 'pi pi-fw pi-sign-in', to: '/loginuser', badge: 'NEW' }
+                
                 
             ]
         },
+
+        {
+            label: 'Admin',
+            items: [
+                { label: 'Login', icon: 'pi pi-fw pi-sign-in', to: '/login', badge: 'NEW' },
+                { label: 'Pengumuman', icon: 'pi pi-fw pi-desktop', to: '/pengumuman', badge: 'NEW' },
+                { label: 'Informasi', icon: 'pi pi-fw pi-info', to: '/informasi', badge: 'NEW' },
+                { label: 'Daftar User', icon: 'pi pi-fw pi-list', to: '/daftaruser', badge: 'NEW' },
+                { label: 'Daftar Group User', icon: 'pi pi-fw pi-clone', to: '/daftargroupuser', badge: 'NEW' },
+                { label: 'Daftar Menu', icon: 'pi pi-fw pi-tablet', to: '/daftarmenu', badge: 'NEW' },
+                { label: 'Data SO', icon: 'pi pi-fw pi-mobile', to: '/dataso', badge: 'NEW' }
+            ]
+        },
+
         {
             label: 'UI Components',
             items: [
