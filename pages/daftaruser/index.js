@@ -62,6 +62,7 @@ function daftaruser() {
 
   //Add Data
   const [addDialog, setAddDialog] = useState(false)
+  
   const [addNama, setAddNama] = useState('')
   const [addNIP, setAddNIP] = useState('')
   const [addEmail, setAddEmail] = useState('')

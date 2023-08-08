@@ -22,7 +22,6 @@ function informasi() {
 
   const [message, setMessage] = useState('')
 
-  const [date, setDate] = useState(0)
 
 
   const [arrSO, setArrSO] = useState([]);
@@ -31,7 +30,7 @@ function informasi() {
       Router.push('/login')
     }
     async function listSO() {
-      const listMenu = await axios.get(`${process.env.NEXT_PUBLIC_BACKENDURL}/admin/so`, {
+      const listMenu = await axios.get(`${process.env.NEXT_PUBLIC_BACKENDURL}/admin/informasi`, {
         headers: {
           Authorization: Cookies.get('admin_token')
         }
@@ -43,16 +42,15 @@ function informasi() {
 
   function resetStateInput() {
     setMessage('')
-    setDate('')
   }
 
   function deleteSO(soID) {
-    axios.delete(`${process.env.NEXT_PUBLIC_BACKENDURL}/admin/so/${soID}`, {
+    axios.delete(`${process.env.NEXT_PUBLIC_BACKENDURL}/admin/informasi/${soID}`, {
       headers: {
         Authorization: Cookies.get('admin_token')
       }
     }).then(() => {
-      alert(`SO with ID ${soID} succesfully deleted!`)
+      alert(`Informasi with ID ${soID} succesfully deleted!`)
     }).catch((error) => {
       alert('Delete Failed')
       console.log(error);
@@ -64,20 +62,17 @@ function informasi() {
 
   const [eMessage, setEditMessage] = useState('')
 
-  const [eDate, setEditDate] = useState(0)
 
   
   function editeSO(SO) {
     setEditVisible(true)
     setEditSOId(SO.id)
     setEditMessage(SO.message)
-    setEditDate(SO.date)
   }
 
   function editSOAPI() {
-    axios.put(`${process.env.NEXT_PUBLIC_BACKENDURL}/admin/so/${eSOId}`, {
-      message: eMessage,
-      date: eDate,
+    axios.put(`${process.env.NEXT_PUBLIC_BACKENDURL}/admin/informasi/${eSOId}`, {
+      message: eMessage
     }, {
       headers: {
         Authorization: Cookies.get('admin_token')
@@ -110,16 +105,6 @@ function informasi() {
                           value={eMessage} onInput={(e) => setEditMessage(e.target.value)} />
                       </div>
                     </div>
-                    <div className="field grid">
-                      <label htmlFor="email3" className="col-12 mb-2 md:col-2 md:mb-0">
-                      Date
-                      </label>
-
-                      <div className="col-12 md:col-10">
-                        <InputNumber id="email3" type="text"
-                          value={eDate} onValueChange={(e) => setEditDate(e.value)} />
-                      </div>
-                    </div>
                     
                   </div>
                 </div>
@@ -133,7 +118,7 @@ function informasi() {
               </div>
             </div>
             </Dialog>
-      <h5>Pengumuman</h5>
+      <h5>Informasi</h5>
       <div className="col-12">
         <div className="card">
          
@@ -187,31 +172,21 @@ function informasi() {
                           value={message} onInput={(e) => setMessage(e.target.value)} />
                       </div>
                     </div>
-                    <div className="field grid">
-                      <label htmlFor="email3" className="col-12 mb-2 md:col-2 md:mb-0">
-                      Date
-                      </label>
-
-                      <div className="col-12 md:col-10">
-                        <InputNumber id="email3" type="text"
-                          value={date} onValueChange={(e) => setDate(e.value)} />
-                      </div>
-                    </div>
+                    
                     
                   </div>
                 </div>
                 <div className="col-4 md:col-4">
                   <Button label="Tambah"
                     onClick={() => {
-                      axios.post(`${process.env.NEXT_PUBLIC_BACKENDURL}/admin/so`, {
-                        "message": message,
-                        "date": date,
+                      axios.post(`${process.env.NEXT_PUBLIC_BACKENDURL}/admin/informasi`, {
+                        "message": message
                       }, {
                         headers: {
                           Authorization: Cookies.get('admin_token')
                         }
                       }).then((res) => {
-                        alert('Succesfully adding new SO!')
+                        alert('Succesfully adding new Informasi!')
                         resetStateInput()
                       }).catch((error) => {
                         alert('Failed adding new menu')

@@ -6,6 +6,7 @@ import { InputNumber } from 'primereact/inputnumber';
 import axios from 'axios';
 import Cookies from 'js-cookie';
 import { Dialog } from 'primereact/dialog';
+import Router from 'next/router';
 
 
 function pengumuman() {
@@ -26,23 +27,23 @@ function pengumuman() {
 
   const [message, setMessage] = useState('')
 
-  const [link, setLink] = useState(0)
+  const [link, setLink] = useState('')
 
 
-  const [arrSO, setArrSO] = useState([]);
+  const [arrPengumuman, setArrPengumuman] = useState([]);
   React.useEffect(() => {
     if (!Cookies.get('admin_token')) {
       Router.push('/login')
     }
-    async function listSO() {
-      const listMenu = await axios.get(`${process.env.NEXT_PUBLIC_BACKENDURL}/admin/so`, {
+    async function listPengumuman() {
+      const listPengumuman = await axios.get(`${process.env.NEXT_PUBLIC_BACKENDURL}/admin/pengumuman`, {
         headers: {
           Authorization: Cookies.get('admin_token')
         }
       })
-      setArrSO(listMenu.data.data)
+      setArrPengumuman(listPengumuman.data.data)
     }
-    listSO()
+    listPengumuman()
   })
 
   function resetStateInput() {
@@ -53,7 +54,7 @@ function pengumuman() {
   }
 
   function deleteSO(soID) {
-    axios.delete(`${process.env.NEXT_PUBLIC_BACKENDURL}/admin/so/${soID}`, {
+    axios.delete(`${process.env.NEXT_PUBLIC_BACKENDURL}/admin/pengumuman/${soID}`, {
       headers: {
         Authorization: Cookies.get('admin_token')
       }
@@ -66,7 +67,7 @@ function pengumuman() {
   }
 
   const [editVisible, setEditVisible] = useState(false)
-  const [eSOId, setEditSOId] = useState('')
+  const [ePengumumanId, setPengumumanId] = useState('')
   const [eTitle, setEditTitle] = useState('')
 
   const [eGambar, setEditGambar] = useState('')
@@ -76,17 +77,17 @@ function pengumuman() {
   const [eLink, setEditLink] = useState(0)
 
   
-  function editeSO(SO) {
+  function editeSO(pengumuman) {
     setEditVisible(true)
-    setEditSOId(SO.id)
-    setEditTitle(SO.title)
-    setEditGambar(SO.gambar)
-    setEditMessage(SO.message)
-    setEditLink(SO.link)
+    setPengumumanId(pengumuman.id)
+    setEditTitle(pengumuman.title)
+    setEditGambar(pengumuman.gambar)
+    setEditMessage(pengumuman.message)
+    setEditLink(pengumuman.link)
   }
 
   function editSOAPI() {
-    axios.put(`${process.env.NEXT_PUBLIC_BACKENDURL}/admin/so/${eSOId}`, {
+    axios.put(`${process.env.NEXT_PUBLIC_BACKENDURL}/admin/pengumuman/${ePengumumanId}`, {
       title: eTitle,
       gambar: eGambar,
       message: eMessage,
@@ -96,7 +97,7 @@ function pengumuman() {
         Authorization: Cookies.get('admin_token')
       }
     }).then((res) => {
-      alert(`SO with ID ${eSOId} succesfully updated!`)
+      alert(`SO with ID ${ePengumumanId} succesfully updated!`)
       setEditVisible(false)
     }).catch((error) => {
       alert('Update Failed')
@@ -148,8 +149,8 @@ function pengumuman() {
                       </label>
 
                       <div className="col-12 md:col-10">
-                        <InputNumber id="email3" type="text"
-                          value={eLink} onValueChange={(e) => setEditLink(e.value)} />
+                      <InputText id="email3" type="text"
+                          value={eLink} onInput={(e) => setEditLink(e.target.value)} />
                       </div>
                     </div>
                     
@@ -181,28 +182,29 @@ function pengumuman() {
               <thead>
                 <tr>
                   <th className="border-b border-gray-200 px-4 py-2 bg-blue-600 text-white">Title</th>
-                  <th className="border-b border-gray-200 px-4 py-2 bg-blue-600 text-white">Gambar</th>
                   <th className="border-b border-gray-200 px-4 py-2 bg-blue-600 text-white">Message</th>
+
+                  <th className="border-b border-gray-200 px-4 py-2 bg-blue-600 text-white">Gambar</th>
                   <th className="border-b border-gray-200 px-4 py-2 bg-blue-600 text-white">Link</th>
                   <th className="border-b border-gray-200 px-4 py-2 bg-blue-600 text-white">Edit</th>
                   <th className="border-b border-gray-200 px-4 py-2 bg-blue-600 text-white">Delete</th>
                 </tr>
               </thead>
               <tbody>
-                {arrSO.map(SO => <tr key={SO.id}>
-                  <td className="border-b border-gray-200 px-4 py-2 text-center">{SO.title}</td>
-                  <td className="border-b border-gray-200 px-4 py-2 text-center">{SO.gambar}</td>
-                  <td className="border-b border-gray-200 px-4 py-2 text-center">{SO.message}</td>
-                  <td className="border-b border-gray-200 px-4 py-2 text-center">{SO.link}</td>
+                {arrPengumuman.map(pengumuman => <tr key={pengumuman.id}>
+                  <td className="border-b border-gray-200 px-4 py-2 text-center">{pengumuman.title}</td>
+                  <td className="border-b border-gray-200 px-4 py-2 text-center">{pengumuman.message}</td>
+                  <td className="border-b border-gray-200 px-4 py-2 text-center"><img className='w-5' src={pengumuman.gambar}></img></td>
+                  <td className="border-b border-gray-200 px-4 py-2 text-center">{pengumuman.link}</td>
 
                   <td className="border-b border-gray-200 px-4 py-2 text-center">
                     <Button severity='warning' label='Edit' onClick={() => {
-                      editeSO(SO)
+                      editeSO(pengumuman)
                     }}></Button>
                   </td>
                   <td className="border-b border-gray-200 px-4 py-2 text-center">
                     <Button severity="danger" label='Delete' onClick={() => {
-                      deleteSO(SO.id)
+                      deleteSO(pengumuman.id)
                     }}></Button>
                   </td>
                 </tr>)}
@@ -248,8 +250,8 @@ function pengumuman() {
                       </label>
 
                       <div className="col-12 md:col-10">
-                        <InputNumber id="email3" type="text"
-                          value={link} onValueChange={(e) => setLink(e.value)} />
+                      <InputText id="email3" type="text"
+                          value={link} onInput={(e) => setLink(e.target.value)} />
                       </div>
                     </div>
                     
@@ -258,20 +260,21 @@ function pengumuman() {
                 <div className="col-4 md:col-4">
                   <Button label="Tambah"
                     onClick={() => {
-                      axios.post(`${process.env.NEXT_PUBLIC_BACKENDURL}/admin/so`, {
+                      axios.post(`${process.env.NEXT_PUBLIC_BACKENDURL}/admin/pengumuman`, {
                         "title": title,
                         "gambar": gambar,
                         "message": message,
-                        "link": link,
+                        "link": link
                       }, {
                         headers: {
                           Authorization: Cookies.get('admin_token')
                         }
                       }).then((res) => {
-                        alert('Succesfully adding new SO!')
+                        alert('Succesfully adding new pengumuman!')
                         resetStateInput()
                       }).catch((error) => {
-                        alert('Failed adding new menu')
+                        console.log(error);
+                        alert('Failed adding new pengumuman')
                         resetStateInput()
                       })
                     }}></Button>
