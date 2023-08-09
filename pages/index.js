@@ -152,8 +152,11 @@ const Dashboard = () => {
                             <div className="w-3rem h-3rem flex align-items-center justify-content-center bg-orange-100 border-circle mr-3 flex-shrink-0">
                                 <i className="pi pi-download text-xl text-orange-500" />
                             </div>
-                            <span className="text-700 line-height-3">
-                                Your request for withdrawal of <span className="text-blue-500 font-medium">2500$</span> has been initiated.
+                            <span className="text-700 line-height-3"> WARTA ANGGARAN EDISI 44 TAHUN 2023
+                            Dalam era globalisasi saat ini, perekonomian dunia telah menjadi semakin saling 
+                            terkait sehingga ketidakpastian di satu negara atau kawasan dapat berdampak pada negara dan 
+                            kawasan lainnya. 
+                            <span className="text-blue-500 font-medium">2500$</span> has been initiated.
                             </span>
                         </li>
                     </ul>
